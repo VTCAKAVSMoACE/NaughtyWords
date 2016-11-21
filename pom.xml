@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.vtcakavsmoace.naughtywords</groupId>
 	<artifactId>NaughtyWords</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>Naughty Words</name>
 	<description>A swearing filter/kicker for Bukkit.</description>
 	<build>
