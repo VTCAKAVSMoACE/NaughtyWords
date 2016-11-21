@@ -75,10 +75,11 @@ public enum NaughtinessLevel {
 		naughtiness.naughtyList.add(string);
 	}
 
-	public static void unassignNaughtiness(String player) {
+	public static boolean unassignNaughtiness(String player) {
 		NaughtinessLevel level = getNaughtyLevel(player);
 		if (level.naughtyList != null)
-			level.naughtyList.remove(player);
+			return level.naughtyList.remove(player);
+		return false;
 	}
 
 	public static void hardWipeCurrent() {

@@ -105,9 +105,11 @@ public class NaughtyWords extends JavaPlugin implements Listener {
 			deregisterPlayer(player, NaughtinessLevel.getNaughtyLevel(player.getUniqueId().toString()).name());
 	}
 
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onLogin(PlayerLoginEvent event) {
 		String player = event.getPlayer().getUniqueId().toString();
+		if (NaughtinessLevel.unassignNaughtiness(player))
+			getLogger().info(event.getPlayer().getName() + " was already loaded, but is now unloaded.");
 		establishNaughtinessLevel(event.getPlayer());
 		getLogger().info(event.getPlayer().getName() + " loaded as " + NaughtinessLevel.getNaughtyLevel(player) + ".");
 	}
@@ -183,6 +185,7 @@ public class NaughtyWords extends JavaPlugin implements Listener {
 					Bukkit.getScheduler().runTask(this,
 							new SyncKick(player, "You said a naughty word, you " + naughtyLevel.name() + " person!", naughtyLevel.name()));
 					getLogger().info("The offender (" + playername + ") was kicked!");
+					getLogger().info("<" + playername + "> "+ msg);
 				} else {
 					Bukkit.getBanList(Type.NAME).addBan(playername,
 							"You said enough naughty words, you " + naughtyLevel.name() + " person! You are banned!",
